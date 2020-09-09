@@ -16,7 +16,7 @@ export const login = async (token: string) => {
         console.log("connected")
     })
     
-    socket.onopen = e => {
+    socket.onopen = () => {
         setInterval(() => {
             socket.send(JSON.stringify(identify))
         }, 41250)
