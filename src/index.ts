@@ -1,1 +1,1 @@
-export * from "./core/Connect"
+export * from "./core/ws/WebSocketManager"

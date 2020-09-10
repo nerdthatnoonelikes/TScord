@@ -19,7 +19,8 @@
         "esModuleInterop": true,
         "experimentalDecorators": true,
         "emitDecoratorMetadata": true,
-        "skipDefaultLibCheck": true
+        "skipDefaultLibCheck": true,
+        "resolveJsonModule": true
     },
     "include": ["src/**/*"],
     "exclude": ["node_modules"]
