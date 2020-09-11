@@ -1,4 +1,4 @@
-TScord is a library in development feel free to contribute
+nerdcord is a library in development feel free to contribute
 
  	
 
