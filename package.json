@@ -1,11 +1,15 @@
 {
-  "name": "tscord",
+  "name": "TScord",
   "version": "1.0.0",
   "description": "a discord library made in typescript",
-  "main": "index.js",
+  "main": "./dist/src/index",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nerdthatnoonelikes/TScord"
+  },  
   "author": "NerdThatNoOneLikes",
   "license": "MIT",
   "dependencies": {

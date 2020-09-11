@@ -8,6 +8,7 @@ export default class Client extends EventEmitter {
 
 
     async login(token: string) {
+        if (!token) throw new Error("please provide a token")
         this.socket.login(token)
     }
 
@@ -29,5 +30,27 @@ export default class Client extends EventEmitter {
     
         console.log(json)
     }
+
+    async createEmbed(description: string, channelID: string, token: string, title: string) {
+        const data = {
+            "tts": false,
+            "embed": {
+                "title": title,
+                "description": description
+            }
+        }
     
+        const headers = {'Content-Type' : 'application/json', 'Authorization' : `Bot ${token}`}
+    
+        const response = await fetch(`https://discord.com/api/v6/channels/${channelID}/messages`, {
+            method: "POST",
+            headers,
+            body: JSON.stringify(data)
+        })
+    
+        const json = await response.json()
+    
+        console.log(json)
+    }
+
 }
