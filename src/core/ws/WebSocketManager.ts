@@ -1,7 +1,14 @@
 import WebSocket from "ws";
+import {Payload} from "../../constants/Payloads"
+import {OPCODE} from "../../constants/Constants"
+import Client from "../client/Client";
 
 export default class WebSocketManager {
     private socket!: WebSocket
+    
+    constructor(private client: Client) {
+
+    }
 
 
      async login(token: string) {
@@ -25,8 +32,28 @@ export default class WebSocketManager {
             }, 41250)
         }
     
-        this.socket.on("message", message => {
-            console.log(JSON.parse(message.toString()))
+        this.socket.on("message", async message => {
+            const payload: Payload = JSON.parse(message.toString())
+            const {t:event, s, op, d} = payload
+           // console.log(payload)
+            switch (payload.op) {
+                case OPCODE.ZERO:
+                    //console.log("an event was triggered")
+                    break;
+                case OPCODE.TEN:
+                    break;
+                case OPCODE.ELEVEN:
+                    break;
+            }
+            if (event) {
+                try {
+                    const {default: module} = await import(`../handlers/${event}`)
+                    module(this.client, payload)
+                } catch (e) {
+                    console.log(e)
+                }
+            }
+            
         })
     }
 

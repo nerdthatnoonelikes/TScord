@@ -1,12 +1,33 @@
 import WebSocketManager from "../ws/WebSocketManager"
 import {EventEmitter} from "events";
+import fetch from "node-fetch";
 
 export default class Client extends EventEmitter {
     // @ts-ignore
     private socket: WebSocketManager = new WebSocketManager(this)
 
+
     async login(token: string) {
         this.socket.login(token)
+    }
+
+    async createMessage(content: string, channelID: string, token: string) {
+        const data = {
+            "content": content,
+            "tts": false
+        }
+    
+        const headers = {'Content-Type' : 'application/json', 'Authorization' : `Bot ${token}`}
+    
+        const response = await fetch(`https://discord.com/api/v6/channels/${channelID}/messages`, {
+            method: "POST",
+            headers,
+            body: JSON.stringify(data)
+        })
+    
+        const json = await response.json()
+    
+        console.log(json)
     }
     
 }
