@@ -1,6 +1,6 @@
 {
-  "name": "TScord",
-  "version": "1.0.0",
+  "name": "nerdcord",
+  "version": "1.0.1",
   "description": "a discord library made in typescript",
   "main": "./dist/src/index",
   "scripts": {

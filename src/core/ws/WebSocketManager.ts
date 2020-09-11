@@ -12,7 +12,7 @@ export default class WebSocketManager {
 
 
      async login(token: string) {
-        const properties = { $os: 'linux', $browser: 'tscord', $device: 'tscord'}
+        const properties = { $os: 'linux', $browser: 'nerdcord', $device: 'nerdcord'}
         const identify = {
           op: 2,
           d: { token, properties }

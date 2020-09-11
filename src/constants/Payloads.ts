@@ -10,8 +10,8 @@ export const Identify = {
         token: '',
         properties: {
             $os: "linux",
-            $browser: 'tscord', 
-            $device: 'tscord'
+            $browser: 'nerdcord', 
+            $device: 'nerdcord'
         }
     }
 }
