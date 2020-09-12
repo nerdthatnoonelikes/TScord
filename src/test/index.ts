@@ -15,7 +15,6 @@ Client.on("message", async (message: any) => {
 
     if (message.content === "!embed") {
         Client.createEmbed("description", message.channel_id, token, "title")
-
     }
 })
 

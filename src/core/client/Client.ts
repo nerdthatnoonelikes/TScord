@@ -11,6 +11,7 @@ export default class Client extends EventEmitter {
         if (!token) throw new Error("please provide a token")
         this.socket.login(token)
     }
+    
 
     async createMessage(content: string, channelID: string, token: string) {
         const data = {
@@ -26,9 +27,9 @@ export default class Client extends EventEmitter {
             body: JSON.stringify(data)
         })
     
-        const json = await response.json()
-    
-        console.log(json)
+        const res = await response.json()
+        console.log(res)
+        return response
     }
 
     async createEmbed(description: string, channelID: string, token: string, title: string) {
@@ -48,9 +49,7 @@ export default class Client extends EventEmitter {
             body: JSON.stringify(data)
         })
     
-        const json = await response.json()
-    
-        console.log(json)
+        return response
     }
 
 }

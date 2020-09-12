@@ -1,10 +1,11 @@
 import WebSocket from "ws";
-import {Payload} from "../../constants/Payloads"
+import {Payload, Heartbeat, Identify} from "../../constants/Payloads"
 import {OPCODE} from "../../constants/Constants"
 import Client from "../client/Client";
 
 export default class WebSocketManager {
     private socket!: WebSocket
+    private interval: any;
     
     constructor(private client: Client) {
 
@@ -26,21 +27,23 @@ export default class WebSocketManager {
             //console.log("connected")
         })
         
-        this.socket.onopen = () => {
+        /*this.socket.onopen = () => {
             setInterval(() => {
                 this.socket.send(JSON.stringify(identify))
             }, 41250)
-        }
+        }*/
     
         this.socket.on("message", async message => {
             const payload: Payload = JSON.parse(message.toString())
             const {t:event, s, op, d} = payload
+            const {heartbeat_interval} = d
            // console.log(payload)
             switch (payload.op) {
                 case OPCODE.ZERO:
-                    //console.log("an event was triggered")
                     break;
                 case OPCODE.TEN:
+                    this.interval = this.heartbeat(heartbeat_interval)
+                    await this.identify(token)
                     break;
                 case OPCODE.ELEVEN:
                     break;
@@ -55,6 +58,17 @@ export default class WebSocketManager {
             }
             
         })
+    }
+
+    heartbeat(ms: number) {
+        return setInterval(() => {
+            this.socket.send(JSON.stringify(Heartbeat))
+        }, ms)
+    }
+
+    async identify(token: string) {
+        Identify.d.token = token
+        return this.socket.send(JSON.stringify(Identify))
     }
 
 }
