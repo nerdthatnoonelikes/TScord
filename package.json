@@ -2,13 +2,13 @@
   "name": "nerdcord",
   "version": "1.0.1",
   "description": "a discord library made in typescript",
-  "main": "./dist/src/index",
+  "main": "./dist/src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/nerdthatnoonelikes/TScord"
+    "url": "https://github.com/nerdthatnoonelikes/nerdcord"
   },  
   "author": "NerdThatNoOneLikes",
   "license": "MIT",

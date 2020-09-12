@@ -23,7 +23,7 @@ export default class WebSocketManager {
         this.socket = await new WebSocket(GATEWAY);
     
         this.socket.on("open", () => {
-            console.log("connected")
+            //console.log("connected")
         })
         
         this.socket.onopen = () => {

@@ -1,2 +1,3 @@
 export * from "./core/ws/WebSocketManager";
-export * from "./core/client/Client";
+import Client from "./core/client/Client"
+export const client = Client

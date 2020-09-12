@@ -1,20 +1,21 @@
 import {token} from "../../token.json"
-import Client from "../core/client/Client"
+import { client } from "../index"
+const Client = new client()
 
-const client = new Client()
-client.login(token)
+Client.login(token)
 
-client.on("ready", () => {
+Client.on("ready", () => {
     console.log("logged in")
 })
 
-client.on("message", async (message: any) => {
+Client.on("message", async (message: any) => {
     if (message.content === "!hello") {
-        client.createMessage("hello", message.channel_id, token)
+        Client.createMessage("hello", message.channel_id, token)
     }
 
     if (message.content === "!embed") {
-        client.createEmbed("description", message.channel_id, token, "title")
+        Client.createEmbed("description", message.channel_id, token, "title")
+
     }
 })
 
