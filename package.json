@@ -4,12 +4,12 @@
   "description": "a discord library made in typescript",
   "main": "./dist/src/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "tsc && node dist/src/test/index"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/nerdthatnoonelikes/nerdcord"
-  },  
+  },
   "author": "NerdThatNoOneLikes",
   "license": "MIT",
   "dependencies": {

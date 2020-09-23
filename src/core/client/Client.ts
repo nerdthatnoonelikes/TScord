@@ -1,6 +1,9 @@
 import WebSocketManager from "../ws/WebSocketManager"
 import {EventEmitter} from "events";
 import fetch from "node-fetch";
+import {
+    Constants
+} from "../../constants/Constants"
 
 export default class Client extends EventEmitter {
     // @ts-ignore
@@ -21,14 +24,12 @@ export default class Client extends EventEmitter {
     
         const headers = {'Content-Type' : 'application/json', 'Authorization' : `Bot ${token}`}
     
-        const response = await fetch(`https://discord.com/api/v6/channels/${channelID}/messages`, {
+        const response = await fetch(`${Constants.API_BASE}/channels/${channelID}/messages`, {
             method: "POST",
             headers,
             body: JSON.stringify(data)
         })
-    
-        const res = await response.json()
-        console.log(res)
+
         return response
     }
 
@@ -43,7 +44,7 @@ export default class Client extends EventEmitter {
     
         const headers = {'Content-Type' : 'application/json', 'Authorization' : `Bot ${token}`}
     
-        const response = await fetch(`https://discord.com/api/v6/channels/${channelID}/messages`, {
+        const response = await fetch(`${Constants.API_BASE}/channels/${channelID}/messages`, {
             method: "POST",
             headers,
             body: JSON.stringify(data)

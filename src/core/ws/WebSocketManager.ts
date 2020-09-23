@@ -23,16 +23,6 @@ export default class WebSocketManager {
     
         this.socket = await new WebSocket(GATEWAY);
     
-        this.socket.on("open", () => {
-            //console.log("connected")
-        })
-        
-        /*this.socket.onopen = () => {
-            setInterval(() => {
-                this.socket.send(JSON.stringify(identify))
-            }, 41250)
-        }*/
-    
         this.socket.on("message", async message => {
             const payload: Payload = JSON.parse(message.toString())
             const {t:event, s, op, d} = payload
