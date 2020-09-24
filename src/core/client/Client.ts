@@ -7,22 +7,27 @@ import {
 
 export default class Client extends EventEmitter {
     // @ts-ignore
+    public token;
     private socket: WebSocketManager = new WebSocketManager(this)
 
-
+    constructor(token: string) {
+        super();
+        this.token = token
+        this.login(token)
+    }
     async login(token: string) {
         if (!token) throw new Error("please provide a token")
         this.socket.login(token)
     }
     
 
-    async createMessage(content: string, channelID: string, token: string) {
+    async createMessage(content: string, channelID: string) {
         const data = {
             "content": content,
             "tts": false
         }
     
-        const headers = {'Content-Type' : 'application/json', 'Authorization' : `Bot ${token}`}
+        const headers = {'Content-Type' : 'application/json', 'Authorization' : `Bot ${this.token}`}
     
         const response = await fetch(`${Constants.API_BASE}/channels/${channelID}/messages`, {
             method: "POST",
@@ -33,7 +38,7 @@ export default class Client extends EventEmitter {
         return response
     }
 
-    async createEmbed(description: string, channelID: string, token: string, title: string) {
+    async createEmbed(description: string, channelID: string, title: string) {
         const data = {
             "tts": false,
             "embed": {
@@ -42,7 +47,7 @@ export default class Client extends EventEmitter {
             }
         }
     
-        const headers = {'Content-Type' : 'application/json', 'Authorization' : `Bot ${token}`}
+        const headers = {'Content-Type' : 'application/json', 'Authorization' : `Bot ${this.token}`}
     
         const response = await fetch(`${Constants.API_BASE}/channels/${channelID}/messages`, {
             method: "POST",
@@ -52,5 +57,15 @@ export default class Client extends EventEmitter {
     
         return response
     }
+
+    async createBan(guildID: string, userID: string) {
+        const headers = {'Content-Type' : 'application/json', 'Authorization' : `Bot ${this.token}`}
+
+        const response = await fetch(`${Constants.API_BASE}/guilds/${guildID}/bans/${userID}`, {
+            method: "PUT",
+            headers
+        })
+    }
+
 
 }

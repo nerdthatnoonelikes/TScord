@@ -1,9 +1,8 @@
-nerdcord is a library in development feel free to contribute
-
+A basic discord library made in typescript
  	
 
 * https://discord.gg/4Ee3uy3, Support server link
-* ![npm link](https://www.npmjs.com/package/nerdcord)
+* https://www.npmjs.com/package/nerdcord
 
 `npm i nerdcord`
 
@@ -24,4 +23,4 @@ Client.on("message", async (message) => {
     if (message.content === "?ping") {
         Client.createMessage("pong", message.channel_id, "token")
     }
-})```
+})

@@ -1,8 +1,6 @@
 import {token} from "../../token.json"
 import { client } from "../index"
-const Client = new client()
-
-Client.login(token)
+const Client = new client(token)
 
 Client.on("ready", () => {
     console.log("logged in")
@@ -10,11 +8,12 @@ Client.on("ready", () => {
 
 Client.on("message", async (message: any) => {
     if (message.content === "!hello") {
-        Client.createMessage("hello", message.channel_id, token)
+        Client.createMessage("hello", message.channel_id)
     }
 
     if (message.content === "!embed") {
-        Client.createEmbed("description", message.channel_id, token, "title")
+        Client.createEmbed("description", message.channel_id,"title")
     }
+
 })
 
