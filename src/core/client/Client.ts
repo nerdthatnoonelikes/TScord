@@ -30,7 +30,7 @@ export default class Client extends EventEmitter {
         const headers = {'Content-Type' : 'application/json', 'Authorization' : `Bot ${this.token}`}
     
         const response = await fetch(`${Constants.API_BASE}/channels/${channelID}/messages`, {
-            method: "POST",
+            method: 'POST',
             headers,
             body: JSON.stringify(data)
         })
@@ -62,7 +62,7 @@ export default class Client extends EventEmitter {
         const headers = {'Content-Type' : 'application/json', 'Authorization' : `Bot ${this.token}`}
 
         const response = await fetch(`${Constants.API_BASE}/guilds/${guildID}/bans/${userID}`, {
-            method: "PUT",
+            method: 'PUT',
             headers
         })
     }
