@@ -5,6 +5,7 @@ import {
     Constants
 } from "../../constants/Constants"
 
+
 export default class Client extends EventEmitter {
     // @ts-ignore
     public token;
@@ -13,11 +14,9 @@ export default class Client extends EventEmitter {
     constructor(token: string) {
         super();
         this.token = token
-        this.login(token)
     }
-    async login(token: string) {
-        if (!token) throw new Error("please provide a token")
-        this.socket.login(token)
+    async login() {
+        this.socket.login(this.token)
     }
     
 
@@ -35,7 +34,7 @@ export default class Client extends EventEmitter {
             body: JSON.stringify(data)
         })
 
-        return response
+        return response;
     }
 
     async createEmbed(description: string, channelID: string, title: string) {
@@ -55,7 +54,7 @@ export default class Client extends EventEmitter {
             body: JSON.stringify(data)
         })
     
-        return response
+        return response;
     }
 
     async createBan(guildID: string, userID: string) {
@@ -65,7 +64,38 @@ export default class Client extends EventEmitter {
             method: "PUT",
             headers
         })
+        return response;
+    } 
+
+    async getAuditLog(guildID: string) {
+        const headers = {'Content-Type' : 'application/json', 'Authorization' : `Bot ${this.token}`}
+
+        const response = await fetch(`${Constants.API_BASE}/guilds/${guildID}/audit-logs`, {
+            method: "GET",
+            headers
+        })
+        const res = response.json()
+        return res;
     }
 
+    async closeChannel(channelID: string) {
+        const headers = {'Content-Type' : 'application/json', 'Authorization' : `Bot ${this.token}`}
 
+        const response = await fetch(`${Constants.API_BASE}/channels/${channelID}`, {
+            method: "DELETE",
+            headers
+        })
+        return response;
+    }
+
+    async getEmojis(guildID: string) {
+        const headers = {'Content-Type' : 'application/json', 'Authorization' : `Bot ${this.token}`}
+
+        const response = await fetch(`${Constants.API_BASE}/guilds/${guildID}/emojis`, {
+            method: "GET",
+            headers
+        })
+        const res = response.json();
+        return res;
+    }
 }

@@ -27,7 +27,6 @@ export default class WebSocketManager {
             const payload: Payload = JSON.parse(message.toString())
             const {t:event, s, op, d} = payload
             const {heartbeat_interval} = d
-           // console.log(payload)
             switch (payload.op) {
                 case OPCODE.ZERO:
                     break;
