@@ -1,6 +1,6 @@
 {
   "name": "nerdcord",
-  "version": "1.0.1",
+  "version": "1.0.3",
   "description": "a discord library made in typescript",
   "main": "./dist/src/index.js",
   "scripts": {

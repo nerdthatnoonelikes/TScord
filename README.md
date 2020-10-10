@@ -9,11 +9,11 @@ A basic discord library made in typescript
 example ping pong bot
 
 ```js
-const Discord = require("nerdcord")
+const Discord = require("nerdcord");
 
-const Client = new Discord.client()
+const Client = new Discord.client("token");
 
-Client.login("token")
+Client.login();
 
 Client.on("ready", () => {
     console.log("ready")
@@ -21,6 +21,6 @@ Client.on("ready", () => {
 
 Client.on("message", async (message) => {
     if (message.content === "?ping") {
-        Client.createMessage("pong", message.channel_id, "token")
+        Client.createMessage("pong", message.channel_id)
     }
 })
