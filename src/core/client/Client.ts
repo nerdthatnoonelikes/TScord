@@ -6,7 +6,7 @@ import {
 } from "../../constants/Constants"
 
 
-export default class Client extends EventEmitter {
+export class Client extends EventEmitter {
     // @ts-ignore
     public token;
     private socket: WebSocketManager = new WebSocketManager(this)

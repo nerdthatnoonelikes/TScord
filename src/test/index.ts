@@ -4,7 +4,6 @@ const Client = new client(token);
 
 Client.on("ready", async () => {
     console.log("logged in")
-    Client.getEmojis("701181418968973312").then((m) => console.log(m))
 })
 
 Client.on('message', async (message: any) => {

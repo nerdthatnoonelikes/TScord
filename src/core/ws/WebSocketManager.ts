@@ -1,7 +1,7 @@
 import WebSocket from "ws";
 import {Payload, Heartbeat, Identify} from "../../constants/Payloads"
 import {OPCODE} from "../../constants/Constants"
-import Client from "../client/Client";
+import {Client} from "../client/Client";
 
 export default class WebSocketManager {
     private socket!: WebSocket
