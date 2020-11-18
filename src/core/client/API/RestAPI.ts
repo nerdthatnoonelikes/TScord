@@ -15,16 +15,15 @@ export class RestAPI {
         this.handler = new APIHandler(this.client)
     }
 
-    public async sendMessage(channelID: string, content: string) {
+    public async sendMessage(channelID: string, content: any) {
         const data = {
             "content": content,
             "tts": false
         }
-        return this.handler.fetch({
+        return await this.handler.fetch({
             endpoint: `channels/${channelID}/messages`,
             method: "POST",
             body: JSON.stringify(data)
         })
-    } 
-
+    };
 }
