@@ -12,8 +12,9 @@ export class APIHandler {
                     method: options.method,
                     headers: {
                         "Content-Type" : "application/json",
-                        Authorization: `Bot ${this.client.token}`
-                    }
+                        "Authorization": `Bot ${this.client.token}`
+                    },
+                    body: options.body
                 })
             if (fetched.status === 429) {
                 const json = await fetched.json();

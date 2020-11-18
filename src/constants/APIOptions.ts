@@ -1,4 +1,5 @@
 export interface APIOptions {
-    method: "POST" | "GET" | "PUT" | "DELETE",
-    endpoint: string
-}
+    endpoint: string;
+    method: "GET" | "POST" | "DELETE" | "PUT";
+    body: any;
+  }
