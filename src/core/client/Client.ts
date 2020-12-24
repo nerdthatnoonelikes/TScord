@@ -1,12 +1,13 @@
 import WebSocketManager from "../ws/WebSocketManager"
 import {EventEmitter} from "events";
-import { RestAPI } from "./API/RestAPI";
+
+import { APIHandler  } from "../client/API/APIHandler";
 
 export class Client extends EventEmitter {
     public token;
     private socket: WebSocketManager = new WebSocketManager(this)
 
-    public rest: RestAPI = new RestAPI(this);
+    public handler: APIHandler = new APIHandler(this);
 
     constructor(token: string) {
         super();
@@ -15,6 +16,4 @@ export class Client extends EventEmitter {
     async login() {
         this.socket.login(this.token)
     }
-    
-    
 }

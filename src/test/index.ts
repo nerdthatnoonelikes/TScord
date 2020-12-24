@@ -7,9 +7,7 @@ Client.on("ready", async () => {
 })
 
 Client.on("message", async (message) => {
-    if (message.content === "!hello") {
-        Client.rest.sendMessage("725747787555274854", "Hello World");
-    }
+    // TODO
 })
 
 Client.login()
